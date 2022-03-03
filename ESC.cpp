@@ -1,7 +1,7 @@
 /*
  * A simple class for control an ESC controller
  */ 
-#include <Servo.h>
+#include <ESP32Servo.h>
 #include "ESC.h"
 
 ESC::ESC(int mode){
