@@ -1,6 +1,8 @@
-#include <Servo.h>
+#include <ESP32Servo.h>
 
 #include "ESC.h"
+
+#define ESC_PIN 9
 
 /* This example shows how to use an ESC controller that can go
  * only forward
@@ -9,13 +11,13 @@ ESC esc;
 
 void setup() 
 { 
-    esc.attach(9);
+    esc.attach(ESC_PIN);
     esc.setSpeed(30);
-    delay(1000);
+    vTaskDelay(1000);
     esc.setSpeed(0);
-    delay(1000);
+    vTaskDelay(1000);
     esc.setSpeed(35);
-    delay(1000);
+    vTaskDelay(1000);
     esc.setSpeed(0);  
 } 
  
