@@ -1,6 +1,8 @@
 ESC Controller Library
 ======================
 
+Note this depends on: ESP32Servo
+
 This arduino library is a Servo library wrapper that allows you to use an ESC controller.
 As Servo library is used, the default frequency is 50 hz (which is the common frequency).
 

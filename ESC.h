@@ -4,10 +4,12 @@
 #include <Arduino.h>
 
 //You may need to configure this values
-#define BASE_FORWARD_ONLY 1000 //number of pulse microseconds for 0 speed
-#define BASE_FORWARD_BACKWARD 1500 //number of pulse microseconds for 0 speed for forward/backward
+#define BASE_FORWARD_ONLY 1000 // number of pulse microseconds for 0 speed
+#define BASE_FORWARD_BACKWARD 1500 // number of pulse microseconds for 0 speed for forward/backward
+#define CALIBRATION_DELAY 8000 // calibration delay in microseconds
 #define MAX_PULSE 2000
 #define MIN_PULSE 1000
+#define ARM_VALUE 500
 
 /* A normal ESC controller goes only forward
  * 0 speed is a pulse of 1 millisecond (1000 microseconds)
@@ -27,6 +29,7 @@ private:
   int actualDirection;
   int actualSpeed;
   int baseSpeed;
+  int oPin;
   Servo esc;
   bool checkSpeed(int speed);
 public:
@@ -35,13 +38,16 @@ public:
   static const int MODE_FORWARD_ONLY = 0;
   static const int MODE_FORWARD_BACKWARD = 1;
   
-  ESC(int mode = MODE_FORWARD_ONLY);
+  ESC(int pin, int mode = MODE_FORWARD_ONLY);
   //if only forward ESC, speed range: 0, 1000
   //if forward/backward ESC, speed range: 0, 500
   void setSpeed(unsigned int speed);
+  void writePulse(unsigned int pulse);
   void setDirection(int direction);
   void setRunningMode(int mode);
   void detach();
+  void calibrate();  // only use on a forward mode (by default this is true)
+  void arm();
   void attach(int pin);
 };
 

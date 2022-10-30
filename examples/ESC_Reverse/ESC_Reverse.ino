@@ -1,19 +1,17 @@
-#include <Servo.h>
+#include <ESP32Servo.h>
 #include "ESC.h"
 
 /* This example shows how to use an ESC controller that can go
  * forward and backard
  */
 
-ESC esc(ESC::MODE_FORWARD_BACKWARD);
+ESC esc(25, ESC::MODE_FORWARD_BACKWARD);
 
-void setup() 
-{
-  esc.attach(9);
+void setup() {
+  esc.arm();
 } 
  
-void loop() 
-{ 
+void loop() { 
     esc.setSpeed(0);
     esc.setDirection(ESC::FORWARD);
     esc.setSpeed(30);
